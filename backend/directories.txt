@@ -1,0 +1,11 @@
+/robots.txt
+/sitemap.xml
+/.env
+/admin
+/api/health
+/login
+/dashboard
+/config
+/backup
+/.git/config
+/server-status

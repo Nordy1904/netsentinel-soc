@@ -1,0 +1,348 @@
+/* ========================================================= */
+/* NETSENTINEL SOC // GLOBAL THEME & VARIABLES               */
+/* ========================================================= */
+:root {
+  --bg-primary: #07090d;
+  --bg-secondary: rgba(13, 17, 23, 0.85);
+  --border-glow: rgba(0, 243, 255, 0.25);
+  --accent-cyan: #00f3ff;
+  --accent-green: #00ff66;
+  --alert-red: #ff3366;
+  --warning-amber: #ffaa00;
+  --text-main: #e2e8f0;
+  --text-muted: #94a3b8;
+  --font-mono: 'Fira Code', monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ========================================================= */
+/* CYBERPUNK GLASS CARDS & SCANLINE OVERLAY                  */
+/* ========================================================= */
+.cyber-card {
+  background: rgba(13, 17, 23, 0.75) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glow);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border-radius: 6px;
+  padding: 24px;
+}
+
+/* Subtle glowing hacker scanline overlay across the body */
+body::before {
+  content: " ";
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  z-index: 99999;
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* ========================================================= */
+/* HACKER SIMULATIONS & ANIMATIONS                           */
+/* ========================================================= */
+
+/* 1. Falling Matrix Code Rain / Top-to-Bottom Flow */
+.matrix-rain-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+}
+
+.matrix-column {
+  position: absolute;
+  top: -100px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-green);
+  writing-mode: vertical-lr;
+  animation: matrixFall linear infinite;
+  text-shadow: 0 0 8px var(--accent-green);
+}
+
+@keyframes matrixFall {
+  0% { transform: translateY(-150px); opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0; }
+}
+
+/* 2. Rotating Tactical Radar Ring Animation */
+@keyframes spinRadar {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.radar-ring {
+  position: absolute;
+  top: 15%;
+  right: 5%;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  border: 1px dashed rgba(0, 243, 255, 0.15);
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinRadar 25s linear infinite;
+}
+
+@media (max-width: 900px) {
+  .radar-ring {
+    display: none; /* Hide radar on mobile screens to save space */
+  }
+}
+
+/* 3. Blinking Terminal Cursor & Neon Glow Effects */
+.hacker-cursor::after {
+  content: "_";
+  animation: blinkCursor 1s infinite;
+  color: var(--accent-cyan);
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes neonGlow {
+  0% { text-shadow: 0 0 5px rgba(0,243,255,0.2), 0 0 10px rgba(0,243,255,0.2); }
+  100% { text-shadow: 0 0 10px rgba(0,243,255,0.6), 0 0 20px rgba(0,243,255,0.4); }
+}
+
+.hacker-glow {
+  animation: neonGlow 2.5s ease-in-out infinite alternate;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--accent-cyan) 0%, #3b82f6 50%, var(--accent-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========================================================= */
+/* HOVER EFFECTS & SLIDING TOOL STRUCTURES                   */
+/* ========================================================= */
+.partition-card {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: 1px solid var(--border-glow) !important;
+}
+
+.partition-card:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 12px 30px rgba(0, 243, 255, 0.25), 0 0 15px rgba(0, 243, 255, 0.1) !important;
+}
+
+.horizontal-slider {
+  display: flex !important;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 16px 8px 30px 8px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.horizontal-slider::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-slider::-webkit-scrollbar-track {
+  background: rgba(10, 13, 18, 0.8);
+  border-radius: 4px;
+}
+
+.horizontal-slider::-webkit-scrollbar-thumb {
+  background: var(--accent-cyan);
+  border-radius: 4px;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.sliding-tool-card {
+  min-width: 340px;
+  max-width: 380px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .sliding-tool-card {
+    min-width: 280px;
+  }
+}
+
+/* Watermark Background */
+.watermark-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 15vw, 14rem);
+  font-weight: 900;
+  color: rgba(0, 243, 255, 0.03);
+  letter-spacing: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+/* ========================================================= */
+/* RESPONSIVE HEADER & MOBILE HAMBURGER MENU FIX             */
+/* ========================================================= */
+.soc-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: rgba(10, 13, 18, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-glow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.mobile-menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--border-glow);
+  color: var(--accent-cyan);
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .soc-navbar {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+  }
+
+  .mobile-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .nav-links-container {
+    display: none !important;
+    width: 100%;
+    flex-direction: column;
+    gap: 8px !important;
+    padding-top: 14px;
+    margin-top: 10px;
+    border-top: 1px solid var(--border-glow);
+  }
+
+  .nav-links-container.mobile-open {
+    display: flex !important;
+  }
+
+  .cyber-nav-btn {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+.cyber-nav-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff !important;
+  background: rgba(0, 243, 255, 0.05);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cyber-nav-btn:hover {
+  background: rgba(0, 243, 255, 0.15);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
+}
+
+/* Standard Cyber Inputs & Buttons */
+.cyber-input {
+  width: 100%;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-glow);
+  color: var(--text-main);
+  padding: 10px 14px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.cyber-input:focus {
+  outline: none;
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 8px rgba(0, 243, 255, 0.3);
+}
+
+.cyber-button {
+  background: rgba(0, 243, 255, 0.1);
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cyber-button:hover {
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  box-shadow: 0 0 15px var(--accent-cyan);
+}
+
+.alert-banner {
+  background: rgba(255, 51, 102, 0.15);
+  border: 1px solid var(--alert-red);
+  color: var(--alert-red);
+  padding: 12px 16px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
